@@ -1,10 +1,6 @@
 # given-when-then
 basic given when then test helper [Java 8]
 
-# supported Java versions
-Java 8+
-
-
 # use
 ```
 import static com.rabriel.gwt.GivenWhenThen.given;
