@@ -12,4 +12,5 @@ public void basicFlowTest(){
     .then("value should be even", whenValue -> whenValue%2 == 0);
 }
 ```
-
+# Thanks to
+Strategy & Technology (http://www.s-and-t.com/) for allowing the project to start.
