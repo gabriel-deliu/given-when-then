@@ -10,6 +10,10 @@ import java.util.function.Predicate;
  */
 public class GivenWhenThen<T> {
 
+    public static final String WHEN_FUNCTION_FAILED = "When function failed.";
+    public static final String FAILED = " - failed";
+    public static final String THEN_NOT_SATISFIED = "Then not satisfied.";
+    public static final String THEN_FUNCTION_FAILED = "Then function failed.";
     private T received;
 
     private GivenWhenThen(T received){
@@ -26,7 +30,7 @@ public class GivenWhenThen<T> {
             return new GivenWhenThen<F>(whenFunction.apply(received));
         }
         catch (Exception ex){
-            throw new RuntimeException(message == null ? "When function failed." : message + " - failed.", ex);
+            throw new RuntimeException(message == null ? WHEN_FUNCTION_FAILED : message + FAILED, ex);
         }
     }
 
@@ -37,7 +41,7 @@ public class GivenWhenThen<T> {
     public void then(String failMessage, Predicate<T> thenFunction){
         boolean testResult = thenFunction.test(received);
         if(!testResult) {
-            throw new RuntimeException(failMessage == null ? "Then not satisfied." : failMessage);
+            throw new RuntimeException(failMessage == null ? THEN_NOT_SATISFIED : failMessage);
         }
     }
 
@@ -50,7 +54,7 @@ public class GivenWhenThen<T> {
             thenFunction.accept(received);
         }
         catch (Exception ex){
-            throw new RuntimeException(message == null ? "then function failed." : message + " - failed.", ex);
+            throw new RuntimeException(message == null ? THEN_FUNCTION_FAILED : message + FAILED, ex);
         }
     }
 
