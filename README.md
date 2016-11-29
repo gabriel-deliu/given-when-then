@@ -1,7 +1,7 @@
 # given-when-then
 basic given when then test helper [Java 8]
 
-# use
+# how to use
 ```
 import static com.rabriel.gwt.GivenWhenThen.given;
 ...
@@ -11,6 +11,29 @@ public void basicFlowTest(){
     .when("multiplying by 2", givenValue -> 2*givenValue)
     .then("value should be even", whenValue -> whenValue%2 == 0);
 }
+
+@Test
+public void multiTypeFlowTest(){
+    LocalDateTime localDateTime = LocalDateTime.now();
+    DayOfWeek expectedDay = localDateTime.getDayOfWeek();
+
+    given(localDateTime)
+        .when("retrieving current day", date -> date.getDayOfWeek())
+        .then("days should match", day -> expectedDay == day);
+}
+
+@Test
+public void assertFlowTest(){
+    Integer primeNumber = 17;
+    given(primeNumber)
+        .when("finding dividers naively", number -> IntStream.range(1, number+1)
+                .boxed().filter(value -> number%value == 0).collect(Collectors.toList()))
+        .then("days should match", dividers -> {
+            assertEquals("should have two dividers", 2, dividers.size());
+            assertEquals("first divider should be 1", 1, (int) dividers.get(0));
+            assertEquals(String.format("first divider should be %d", primeNumber), primeNumber, dividers.get(1));
+        });
+}
 ```
-# Thanks to
+# thanks to
 Strategy & Technology (http://www.s-and-t.com/) for allowing the project to start.
