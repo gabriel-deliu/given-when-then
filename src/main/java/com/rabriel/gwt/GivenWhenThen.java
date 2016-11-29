@@ -59,6 +59,10 @@ public class GivenWhenThen<T> {
     }
 
     public static <E> GivenWhenThen<E> given(E receivedObj){
+        return given(null, receivedObj);
+    }
+
+    public static <E> GivenWhenThen<E> given(String message, E receivedObj){
         return new GivenWhenThen<E>(receivedObj);
     }
 

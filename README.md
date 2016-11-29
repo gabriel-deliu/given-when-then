@@ -25,7 +25,7 @@ public void multiTypeFlowTest(){
 @Test
 public void assertFlowTest(){
     Integer primeNumber = 17;
-    given(primeNumber)
+    given("a prime number", primeNumber)
         .when("finding dividers naively", number -> IntStream.rangeClosed(1, number)
                 .boxed().filter(value -> number%value == 0).collect(Collectors.toList()))
         .then(dividers -> {
