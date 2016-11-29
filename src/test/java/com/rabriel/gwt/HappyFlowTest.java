@@ -62,7 +62,7 @@ public class HappyFlowTest {
     public void assertFlowTest(){
         Integer primeNumber = 17;
         given(primeNumber)
-            .when("finding dividers naively", number -> IntStream.range(1, number+1)
+            .when("finding dividers naively", number -> IntStream.rangeClosed(1, number)
                     .boxed().filter(value -> number%value == 0).collect(Collectors.toList()))
             .then("days should match", dividers -> {
                 assertEquals("should have two dividers", 2, dividers.size());
