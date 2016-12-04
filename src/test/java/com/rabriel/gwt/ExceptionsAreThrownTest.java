@@ -2,6 +2,8 @@ package com.rabriel.gwt;
 
 import org.junit.Test;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -16,6 +18,7 @@ public class ExceptionsAreThrownTest {
 
     public static final String EVERYTHING_WILL_BE_FINE = "everything will be fine";
     public static final String BAD_THINGS_HAPPEN = "bad things happen";
+    private ExecutorService executor = Executors.newSingleThreadExecutor();
 
     @Test(expected=RuntimeException.class)
     public void testExceptionIsThrownFromWhen(){
@@ -77,5 +80,19 @@ public class ExceptionsAreThrownTest {
             assertEquals("Exception message should match.", GivenWhenThen.THEN_NOT_SATISFIED, ex.getMessage());
         }
 
+    }
+
+    @Test(expected=RuntimeException.class)
+    public void testExceptionFromGivenFuture(){
+        given(executor.submit(() ->{ throw new RuntimeException("future will fail"); }));
+    }
+
+    @Test
+    public void testExceptionMessageFromGivenFuture(){
+        try{
+            given(executor.submit(() ->{ throw new RuntimeException("future will fail"); }));
+        } catch (RuntimeException ex){
+            assertEquals("Exception message should match.", GivenWhenThen.FUTURE_FAILED, ex.getMessage());
+        }
     }
 }

@@ -34,6 +34,13 @@ public void assertFlowTest(){
             assertEquals(String.format("first divider should be %d", primeNumber), primeNumber, dividers.get(1));
         });
 }
+
+@Test
+public void basicGivenFutureFlowTest(){
+    given(executor.submit(() -> 1))
+            .when("multiplying by 2", givenValue -> 2*givenValue)
+            .then("value should be even", whenValue -> whenValue%2 == 0);
+}
 ```
 # thanks to
 Strategy & Technology (http://www.s-and-t.com/) for allowing the project to start.

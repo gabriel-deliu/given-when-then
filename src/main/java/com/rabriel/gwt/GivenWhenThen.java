@@ -1,5 +1,7 @@
 package com.rabriel.gwt;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -14,10 +16,25 @@ public class GivenWhenThen<T> {
     public static final String FAILED = " - failed";
     public static final String THEN_NOT_SATISFIED = "Then not satisfied.";
     public static final String THEN_FUNCTION_FAILED = "Then function failed.";
+    public static final String FUTURE_FAILED = "Given future failed.";
     private T received;
 
     private GivenWhenThen(T received){
         this.received = received;
+    }
+
+    private GivenWhenThen(Future<T> received) {
+
+        if(received == null){
+            this.received = null;
+            return;
+        }
+
+        try {
+            this.received = received.get();
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(FUTURE_FAILED, e);
+        }
     }
 
     public <F> GivenWhenThen<F> when(Function<T,F> whenFunction){
@@ -27,7 +44,7 @@ public class GivenWhenThen<T> {
     public <F> GivenWhenThen<F> when(String message, Function<T,F> whenFunction){
 
         try {
-            return new GivenWhenThen<F>(whenFunction.apply(received));
+            return new GivenWhenThen<>(whenFunction.apply(received));
         }
         catch (Exception ex){
             throw new RuntimeException(message == null ? WHEN_FUNCTION_FAILED : message + FAILED, ex);
@@ -63,7 +80,15 @@ public class GivenWhenThen<T> {
     }
 
     public static <E> GivenWhenThen<E> given(String message, E receivedObj){
-        return new GivenWhenThen<E>(receivedObj);
+        return new GivenWhenThen<>(receivedObj);
+    }
+
+    public static <E> GivenWhenThen<E> given(Future<E> receivedObj){
+        return given(null, receivedObj);
+    }
+
+    public static <E> GivenWhenThen<E> given(String message, Future<E> receivedObj){
+        return new GivenWhenThen<>(receivedObj);
     }
 
 }

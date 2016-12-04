@@ -6,6 +6,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -32,7 +33,7 @@ public class HappyFlowTest {
     }
 
     @Test
-    public void testPassedValueIsMatchedWhenThen(){
+    public void testPassedValueIsMatchedWhenThen() throws ExecutionException, InterruptedException {
         String whenValue = "Test Value";
 
         given(null)
@@ -55,7 +56,7 @@ public class HappyFlowTest {
         DayOfWeek expectedDay = localDateTime.getDayOfWeek();
 
         given(localDateTime)
-            .when("retrieving current day", date -> date.getDayOfWeek())
+            .when("retrieving current day", LocalDateTime::getDayOfWeek)
             .then("days should match", day -> expectedDay == day);
     }
     @Test
