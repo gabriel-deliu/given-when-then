@@ -51,6 +51,14 @@ public class HappyFlowTest {
     }
 
     @Test
+    public void basicMultiWhenFlowTest(){
+        given(1)
+                .when("multiplying by 2", givenValue -> 2*givenValue)
+                .when("High squared", givenValue -> 2*givenValue)
+                .then("value should be a square", whenValue -> whenValue == Math.pow(Math.sqrt(whenValue),2));
+    }
+
+    @Test
     public void multiTypeFlowTest(){
         LocalDateTime localDateTime = LocalDateTime.now();
         DayOfWeek expectedDay = localDateTime.getDayOfWeek();
