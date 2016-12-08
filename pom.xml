@@ -4,9 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rabriel.gwt</groupId>
+    <groupId>com.rabriel</groupId>
     <artifactId>given-when-then</artifactId>
     <version>0.1.1</version>
+    <packaging>jar</packaging>
+    <name>com.rabrie:given-when-then</name>
+    <description>basic given when then test helper</description>
+    <url>https://github.com/gabriel-deliu/given-when-then </url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://github.com/gabriel-deliu/given-when-then/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Constantin Gabriel Deliu</name>
+            <email>dcgro@yahoo.com</email>
+            <organization>Rabriel</organization>
+            <organizationUrl>https://github.com/gabriel-deliu/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:gabriel-deliu/given-when-then.git</connection>
+        <developerConnection>scm:git:git@github.com:gabriel-deliu/given-when-then.git</developerConnection>
+        <url>git@github.com:gabriel-deliu/given-when-then.git</url>
+    </scm>
 
     <dependencies>
         <dependency>
