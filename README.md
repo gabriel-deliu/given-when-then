@@ -1,6 +1,14 @@
 # given-when-then
 basic given when then test helper [Java 8]
 
+# install
+Add the following maven dependecy (Sample for version 0.1.2):
+  <dependency>
+    <groupId>com.rabriel</groupId>
+    <artifactId>given-when-then</artifactId>
+    <version>0.1.2</version>
+  </dependency>
+
 # how to use
 ```
 import static com.rabriel.gwt.GivenWhenThen.given;
