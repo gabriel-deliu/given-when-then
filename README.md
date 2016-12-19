@@ -13,7 +13,7 @@ Add the following maven dependecy (Sample for version 0.1.2):
 
 # how to use
 ```java
-import static com.rabriel.gwt.GivenWhenThen.given;
+import static com.rabriel.GivenWhenThen.given;
 
 @Test
 public void basicFlowTest() {
