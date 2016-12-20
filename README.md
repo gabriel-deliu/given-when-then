@@ -60,5 +60,8 @@ public void basicGivenFutureFlowTest() {
   .then("value should be even", whenValue -> whenValue % 2 == 0);
 }
 ```
+# see also
+[Javascript version: given-when-then-js](https://github.com/gabriel-deliu/given-when-then-js)
+
 # thanks to
 Strategy & Technology (http://www.s-and-t.com/) for allowing the project to start.
