@@ -62,6 +62,7 @@ public void basicGivenFutureFlowTest() {
 ```
 # see also
 [A Functional Approach to Given When Then Using Java 8](https://dzone.com/articles/a-new-approach-to-given-when-then)
+
 [Javascript version: given-when-then-js](https://github.com/gabriel-deliu/given-when-then-js)
 
 # thanks to
