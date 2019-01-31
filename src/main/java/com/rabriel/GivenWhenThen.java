@@ -1,5 +1,7 @@
 package com.rabriel;
 
+import io.vavr.control.Try;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
@@ -89,6 +91,14 @@ public class GivenWhenThen<T> {
 
     public static <E> GivenWhenThen<E> given(String message, Future<E> receivedObj){
         return new GivenWhenThen<>(receivedObj);
+    }
+
+    public <E> WhenTrying<E> whenTrying(final Function<T, E> failable) {
+        return new WhenTrying<>(Try.of(() -> failable.apply(received)));
+    }
+
+    public WhenTrying<Void> whenTrying(final Consumer<T> failable) {
+        return new WhenTrying<>(Try.run(() -> failable.accept(received)));
     }
 
 }
