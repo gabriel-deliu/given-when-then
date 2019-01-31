@@ -36,8 +36,8 @@ public class HappyFlowTest {
 
         GivenWhenThen.given(null)
             .when(whenReceivedValue -> whenValue)
-            .then("testing passed string value in 'thenItThrows'",thenReceivedValue ->
-            { assertEquals("when passed value should match thenItThrows received value",whenValue, thenReceivedValue); });
+            .then("testing passed string value in 'then'",thenReceivedValue ->
+            { assertEquals("when passed value should match then received value",whenValue, thenReceivedValue); });
 
     }
 
